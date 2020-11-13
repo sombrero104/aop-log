@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
+/**
+ * 애스펙트는 스프링 빈이어야 하기 때문에 @Component를 붙여준다.
+ */
 @Component
 @Aspect
 public class LogAspect {
@@ -22,6 +25,7 @@ public class LogAspect {
         Object proceed = joinPoint.proceed();
 
         stopWatch.stop();
+        logger.info("##### " + joinPoint.toString());
         logger.info("##### " + stopWatch.prettyPrint());
 
         return proceed;
